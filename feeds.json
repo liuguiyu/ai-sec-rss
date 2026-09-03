@@ -1,0 +1,26 @@
+{
+  "ai": [
+    { "name": "OpenAI News", "url": "https://openai.com/news/rss.xml", "home": "https://openai.com/news/" },
+    { "name": "Google DeepMind", "url": "https://deepmind.google/blog/rss.xml", "home": "https://deepmind.google/discover/blog/" },
+    { "name": "The Verge — AI", "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", "home": "https://www.theverge.com/ai-artificial-intelligence" },
+    { "name": "TechCrunch — AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "home": "https://techcrunch.com/category/artificial-intelligence/" },
+    { "name": "VentureBeat — AI", "url": "https://venturebeat.com/category/ai/feed", "home": "https://venturebeat.com/category/ai/" },
+    { "name": "MIT Tech Review — AI", "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed/", "home": "https://www.technologyreview.com/topic/artificial-intelligence/" },
+    { "name": "IEEE Spectrum — AI", "url": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss", "home": "https://spectrum.ieee.org/topic/artificial-intelligence" },
+    { "name": "MarkTechPost", "url": "https://www.marktechpost.com/feed/", "home": "https://www.marktechpost.com/" },
+    { "name": "arXiv cs.AI", "url": "https://export.arxiv.org/rss/cs.AI", "home": "https://arxiv.org/list/cs.AI/recent" },
+    { "name": "Unite.AI", "url": "https://www.unite.ai/feed/", "home": "https://www.unite.ai/" }
+  ],
+  "security": [
+    { "name": "Krebs on Security", "url": "https://krebsonsecurity.com/feed/", "home": "https://krebsonsecurity.com/" },
+    { "name": "The Hacker News", "url": "https://thehackernews.com/feeds/posts/default", "home": "https://thehackernews.com/" },
+    { "name": "BleepingComputer", "url": "https://www.bleepingcomputer.com/feed/", "home": "https://www.bleepingcomputer.com/" },
+    { "name": "Schneier on Security", "url": "https://www.schneier.com/feed/atom/", "home": "https://www.schneier.com/" },
+    { "name": "Threatpost", "url": "https://threatpost.com/feed/", "home": "https://threatpost.com/" },
+    { "name": "Dark Reading", "url": "https://www.darkreading.com/rss.xml", "home": "https://www.darkreading.com/" },
+    { "name": "Unit 42", "url": "https://unit42.paloaltonetworks.com/feed/", "home": "https://unit42.paloaltonetworks.com/" },
+    { "name": "CISA Advisories", "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml", "home": "https://www.cisa.gov/news-events/cybersecurity-advisories" },
+    { "name": "WeLiveSecurity", "url": "https://www.welivesecurity.com/en/rss/feed/", "home": "https://www.welivesecurity.com/en/" },
+    { "name": "SANS ISC Diary", "url": "https://isc.sans.edu/rssfeed_full.xml", "home": "https://isc.sans.edu/diary/" }
+  ]
+}
