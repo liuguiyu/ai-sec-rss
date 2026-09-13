@@ -1,26 +1,24 @@
 {
   "ai": [
-    { "name": "OpenAI News", "url": "https://openai.com/news/rss.xml", "home": "https://openai.com/news/" },
-    { "name": "Google DeepMind", "url": "https://deepmind.google/blog/rss.xml", "home": "https://deepmind.google/discover/blog/" },
-    { "name": "The Verge — AI", "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", "home": "https://www.theverge.com/ai-artificial-intelligence" },
-    { "name": "TechCrunch — AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "home": "https://techcrunch.com/category/artificial-intelligence/" },
-    { "name": "VentureBeat — AI", "url": "https://venturebeat.com/category/ai/feed", "home": "https://venturebeat.com/category/ai/" },
-    { "name": "MIT Tech Review — AI", "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed/", "home": "https://www.technologyreview.com/topic/artificial-intelligence/" },
-    { "name": "IEEE Spectrum — AI", "url": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss", "home": "https://spectrum.ieee.org/topic/artificial-intelligence" },
-    { "name": "MarkTechPost", "url": "https://www.marktechpost.com/feed/", "home": "https://www.marktechpost.com/" },
-    { "name": "arXiv cs.AI", "url": "https://export.arxiv.org/rss/cs.AI", "home": "https://arxiv.org/list/cs.AI/recent" },
-    { "name": "Unite.AI", "url": "https://www.unite.ai/feed/", "home": "https://www.unite.ai/" }
+    { "name": "量子位", "url": "https://www.qbitai.com/feed", "home": "https://www.qbitai.com/" },
+    { "name": "雷锋网", "url": "https://www.leiphone.com/feed", "home": "https://www.leiphone.com/" },
+    { "name": "爱范儿", "url": "https://www.ifanr.com/feed", "home": "https://www.ifanr.com/", "filter": "ai" },
+    { "name": "钛媒体", "url": "https://www.tmtpost.com/rss.xml", "home": "https://www.tmtpost.com/", "filter": "ai" },
+    { "name": "InfoQ 中文", "url": "https://www.infoq.cn/feed", "home": "https://www.infoq.cn/", "filter": "ai" },
+    { "name": "少数派", "url": "https://sspai.com/feed", "home": "https://sspai.com/", "filter": "ai" },
+    { "name": "奇客 Solidot", "url": "https://www.solidot.org/index.rss", "home": "https://www.solidot.org/", "filter": "ai" },
+    { "name": "开源中国", "url": "https://www.oschina.net/news/rss", "home": "https://www.oschina.net/news", "filter": "ai" },
+    { "name": "IT之家", "url": "https://www.ithome.com/rss/", "home": "https://www.ithome.com/", "filter": "ai" },
+    { "name": "极客公园", "url": "https://www.geekpark.net/rss", "home": "https://www.geekpark.net/", "filter": "ai" }
   ],
   "security": [
-    { "name": "Krebs on Security", "url": "https://krebsonsecurity.com/feed/", "home": "https://krebsonsecurity.com/" },
-    { "name": "The Hacker News", "url": "https://thehackernews.com/feeds/posts/default", "home": "https://thehackernews.com/" },
-    { "name": "BleepingComputer", "url": "https://www.bleepingcomputer.com/feed/", "home": "https://www.bleepingcomputer.com/" },
-    { "name": "Schneier on Security", "url": "https://www.schneier.com/feed/atom/", "home": "https://www.schneier.com/" },
-    { "name": "Threatpost", "url": "https://threatpost.com/feed/", "home": "https://threatpost.com/" },
-    { "name": "Dark Reading", "url": "https://www.darkreading.com/rss.xml", "home": "https://www.darkreading.com/" },
-    { "name": "Unit 42", "url": "https://unit42.paloaltonetworks.com/feed/", "home": "https://unit42.paloaltonetworks.com/" },
-    { "name": "CISA Advisories", "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml", "home": "https://www.cisa.gov/news-events/cybersecurity-advisories" },
-    { "name": "WeLiveSecurity", "url": "https://www.welivesecurity.com/en/rss/feed/", "home": "https://www.welivesecurity.com/en/" },
-    { "name": "SANS ISC Diary", "url": "https://isc.sans.edu/rssfeed_full.xml", "home": "https://isc.sans.edu/diary/" }
+    { "name": "FreeBuf", "url": "https://www.freebuf.com/feed", "home": "https://www.freebuf.com/" },
+    { "name": "安全客", "url": "https://api.anquanke.com/data/v1/rss", "home": "https://www.anquanke.com/" },
+    { "name": "先知社区", "url": "https://xz.aliyun.com/feed", "home": "https://xz.aliyun.com/" },
+    { "name": "嘶吼 RoarTalk", "url": "https://www.4hou.com/feed", "home": "https://www.4hou.com/" },
+    { "name": "安全脉搏", "url": "https://www.secpulse.com/feed", "home": "https://www.secpulse.com/" },
+    { "name": "火绒安全", "url": "https://www.huorong.cn/rss.xml", "home": "https://www.huorong.cn/" },
+    { "name": "天融信阿尔法实验室", "url": "https://blog.topsec.com.cn/feed", "home": "https://blog.topsec.com.cn/" },
+    { "name": "吾爱破解 病毒分析", "url": "https://www.52pojie.cn/forum.php?mod=rss&fid=32", "home": "https://www.52pojie.cn/forum-32-1.html" }
   ]
 }
