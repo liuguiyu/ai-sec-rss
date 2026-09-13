@@ -1,27 +1,131 @@
 {
   "ai": [
-    { "name": "量子位", "url": "https://www.qbitai.com/feed", "home": "https://www.qbitai.com/" },
-    { "name": "雷锋网", "url": "https://www.leiphone.com/feed", "home": "https://www.leiphone.com/" },
-    { "name": "爱范儿", "url": "https://www.ifanr.com/feed", "home": "https://www.ifanr.com/", "filter": "ai" },
-    { "name": "钛媒体", "url": "https://www.tmtpost.com/rss.xml", "home": "https://www.tmtpost.com/", "filter": "ai" },
-    { "name": "InfoQ 中文", "url": "https://www.infoq.cn/feed", "home": "https://www.infoq.cn/", "filter": "ai" },
-    { "name": "少数派", "url": "https://sspai.com/feed", "home": "https://sspai.com/", "filter": "ai" },
-    { "name": "奇客 Solidot", "url": "https://www.solidot.org/index.rss", "home": "https://www.solidot.org/", "filter": "ai" },
-    { "name": "开源中国", "url": "https://www.oschina.net/news/rss", "home": "https://www.oschina.net/news", "filter": "ai" },
-    { "name": "IT之家", "url": "https://www.ithome.com/rss/", "home": "https://www.ithome.com/", "filter": "ai" },
-    { "name": "极客公园", "url": "https://www.geekpark.net/rss", "home": "https://www.geekpark.net/", "filter": "ai" }
+    {
+      "name": "量子位",
+      "url": "https://www.qbitai.com/feed",
+      "home": "https://www.qbitai.com/"
+    },
+    {
+      "name": "雷锋网",
+      "url": "https://www.leiphone.com/feed",
+      "home": "https://www.leiphone.com/"
+    },
+    {
+      "name": "爱范儿",
+      "url": "https://www.ifanr.com/feed",
+      "home": "https://www.ifanr.com/",
+      "filter": "ai"
+    },
+    {
+      "name": "钛媒体",
+      "url": "https://www.tmtpost.com/rss.xml",
+      "home": "https://www.tmtpost.com/",
+      "filter": "ai"
+    },
+    {
+      "name": "InfoQ 中文",
+      "url": "https://www.infoq.cn/feed",
+      "home": "https://www.infoq.cn/",
+      "filter": "ai"
+    },
+    {
+      "name": "少数派",
+      "url": "https://sspai.com/feed",
+      "home": "https://sspai.com/",
+      "filter": "ai"
+    },
+    {
+      "name": "奇客 Solidot",
+      "url": "https://www.solidot.org/index.rss",
+      "home": "https://www.solidot.org/",
+      "filter": "ai"
+    },
+    {
+      "name": "开源中国",
+      "url": "https://www.oschina.net/news/rss",
+      "home": "https://www.oschina.net/news",
+      "filter": "ai"
+    },
+    {
+      "name": "IT之家",
+      "url": "https://www.ithome.com/rss/",
+      "home": "https://www.ithome.com/",
+      "filter": "ai"
+    },
+    {
+      "name": "极客公园",
+      "url": "https://www.geekpark.net/rss",
+      "home": "https://www.geekpark.net/",
+      "filter": "ai"
+    }
   ],
   "security": [
-    { "name": "CISA 在野利用漏洞", "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml", "home": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog" },
-    { "name": "Exploit-DB 漏洞利用", "url": "https://www.exploit-db.com/rss.xml", "home": "https://www.exploit-db.com/" },
-    { "name": "微软安全公告", "url": "https://api.msrc.microsoft.com/update-guide/rss", "home": "https://msrc.microsoft.com/update-guide", "maxItems": 8 },
-    { "name": "Ubuntu 安全公告", "url": "https://ubuntu.com/security/notices/rss.xml", "home": "https://ubuntu.com/security/notices" },
-    { "name": "Debian 安全公告", "url": "https://www.debian.org/security/dsa.rdf", "home": "https://www.debian.org/security/" },
-    { "name": "Tenable 漏洞研究", "url": "https://www.tenable.com/blog/feed", "home": "https://www.tenable.com/blog" },
-    { "name": "安全客", "url": "https://api.anquanke.com/data/v1/rss", "home": "https://www.anquanke.com/" },
-    { "name": "先知社区", "url": "https://xz.aliyun.com/feed", "home": "https://xz.aliyun.com/" },
-    { "name": "吾爱破解 病毒分析", "url": "https://www.52pojie.cn/forum.php?mod=rss&fid=32", "home": "https://www.52pojie.cn/forum-32-1.html" },
-    { "name": "嘶吼 RoarTalk", "url": "https://www.4hou.com/feed", "home": "https://www.4hou.com/" },
-    { "name": "天融信阿尔法实验室", "url": "https://blog.topsec.com.cn/feed", "home": "https://blog.topsec.com.cn/" }
+    {
+      "name": "CISA 在野利用漏洞",
+      "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "home": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "group": "vuln"
+    },
+    {
+      "name": "Exploit-DB 漏洞利用",
+      "url": "https://www.exploit-db.com/rss.xml",
+      "home": "https://www.exploit-db.com/",
+      "group": "vuln"
+    },
+    {
+      "name": "微软安全公告",
+      "url": "https://api.msrc.microsoft.com/update-guide/rss",
+      "home": "https://msrc.microsoft.com/update-guide",
+      "maxItems": 8,
+      "group": "vuln"
+    },
+    {
+      "name": "Ubuntu 安全公告",
+      "url": "https://ubuntu.com/security/notices/rss.xml",
+      "home": "https://ubuntu.com/security/notices",
+      "group": "vuln"
+    },
+    {
+      "name": "Debian 安全公告",
+      "url": "https://www.debian.org/security/dsa.rdf",
+      "home": "https://www.debian.org/security/",
+      "group": "vuln"
+    },
+    {
+      "name": "Tenable 漏洞研究",
+      "url": "https://www.tenable.com/blog/feed",
+      "home": "https://www.tenable.com/blog",
+      "group": "vuln"
+    },
+    {
+      "name": "安全客",
+      "url": "https://api.anquanke.com/data/v1/rss",
+      "home": "https://www.anquanke.com/",
+      "group": "news"
+    },
+    {
+      "name": "先知社区",
+      "url": "https://xz.aliyun.com/feed",
+      "home": "https://xz.aliyun.com/",
+      "group": "news"
+    },
+    {
+      "name": "吾爱破解 病毒分析",
+      "url": "https://www.52pojie.cn/forum.php?mod=rss&fid=32",
+      "home": "https://www.52pojie.cn/forum-32-1.html",
+      "group": "malware"
+    },
+    {
+      "name": "嘶吼 RoarTalk",
+      "url": "https://www.4hou.com/feed",
+      "home": "https://www.4hou.com/",
+      "group": "news"
+    },
+    {
+      "name": "天融信阿尔法实验室",
+      "url": "https://blog.topsec.com.cn/feed",
+      "home": "https://blog.topsec.com.cn/",
+      "group": "news"
+    }
   ]
 }

@@ -124,6 +124,26 @@ body::before {
 }
 .cat.active[data-cat="security"]::before { background: linear-gradient(90deg, #ffa26b, #ff6b81); }
 
+/* ===== security sub tabs ===== */
+.subcats { display: flex; gap: 7px; flex-wrap: wrap; margin: -6px 0 14px; }
+.subcats[hidden] { display: none; }
+.subcat {
+  cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 13px; font-size: 12.5px; font-weight: 600; font-family: inherit;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: rgba(16, 24, 39, .6); color: var(--muted);
+  transition: color .15s, border-color .15s, background .18s, transform .15s;
+}
+.subcat:hover { color: var(--text); border-color: var(--line-strong); transform: translateY(-1px); }
+.subcat .n { font-size: 11px; opacity: .7; font-variant-numeric: tabular-nums; }
+.subcat .n:not(:empty)::before { content: "·"; margin-right: 4px; opacity: .6; }
+.subcat.active {
+  color: var(--text); border-color: rgba(255, 162, 107, .55);
+  background: linear-gradient(160deg, rgba(255, 143, 107, .22), rgba(255, 143, 107, .05));
+  box-shadow: 0 0 0 1px rgba(255, 162, 107, .18) inset;
+}
+.subcat.active .n { opacity: 1; color: var(--sec); }
+
 /* ===== toolbar ===== */
 .toolbar {
   display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 0 0 16px; padding: 10px;

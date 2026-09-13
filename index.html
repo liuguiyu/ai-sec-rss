@@ -32,6 +32,13 @@
       <button class="cat" data-cat="security"><span class="cat-name">SECURITY · 网络安全</span><span class="cat-sub" id="sub-security">—</span></button>
     </nav>
 
+    <nav class="subcats" id="subNav" hidden aria-label="安全子分类">
+      <button class="subcat active" data-group="all">全部<span class="n" data-count="all"></span></button>
+      <button class="subcat" data-group="vuln">漏洞 · CVE<span class="n" data-count="vuln"></span></button>
+      <button class="subcat" data-group="news">资讯分析<span class="n" data-count="news"></span></button>
+      <button class="subcat" data-group="malware">恶意软件<span class="n" data-count="malware"></span></button>
+    </nav>
+
     <section class="toolbar">
       <input id="search" type="search" placeholder="搜索标题 / 摘要…" autocomplete="off" />
       <select id="sourceFilter" title="按来源筛选"></select>

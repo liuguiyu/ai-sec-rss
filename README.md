@@ -12,6 +12,7 @@
 - 🤖 AI / 🛡️ Security 双分类，AI 10 个 + 安全 11 个免费源（见 `feeds.json`）
 - 跨源去重、按发布时间倒序，显示来源徽章 + 相对时间 + 摘要
 - 兼容 UTF-8 / GBK / GB2312 编码的中文源，标题不乱码；抓取统一使用浏览器 UA
+- 🗂️ 安全分类支持子标签页：**全部 / 漏洞 · CVE / 资讯分析 / 恶意软件**，支持深链（如 #security/vuln）
 - 客户端搜索过滤、按来源筛选、24 小时内内容标「新」
 - 每 5 分钟内存缓存聚合结果；单源失败不影响整体，并显示“x/N 源正常”
 - 服务端聚合，不受浏览器 CORS 限制；后端 Node.js + Express（rss-parser）
@@ -55,6 +56,7 @@ npm start          # 默认 http://localhost:3000
 ## 自定义源
 
 编辑 `feeds.json`：`ai` 与 `security` 各是一个数组，每项 `{ "name": 显示名, "url": RSS地址, "home": 官网 }`。
+安全分类的源可加 `"group"`（`vuln` 漏洞 · CVE / `news` 资讯分析 / `malware` 恶意软件）归入子标签页；条目量大的源可加 `"maxItems": 12` 限制条数；泛科技类 AI 源可加 `"filter": "ai"` 只保留 AI 相关标题。
 改完重启或重新部署即可，不需要改代码。也可以直接请求 `/api/feeds/list` 查看当前配置。
 
 ## API

@@ -5,6 +5,7 @@
     data: null,        // 当前分类的最近一次结果
     search: '',
     source: 'all',
+    group: 'all',      // 安全分类的子标签页：all | vuln | news | malware
     loading: false
   };
   const els = {
@@ -16,6 +17,7 @@
     health: document.getElementById('health'),
     count: document.getElementById('itemCount'),
     refresh: document.getElementById('refreshBtn'),
+    subNav: document.getElementById('subNav'),
     subAi: document.getElementById('sub-ai'),
     subSec: document.getElementById('sub-security')
   };
@@ -67,6 +69,7 @@
     const items = state.data && state.data.items ? state.data.items : [];
     const q = state.search.trim().toLowerCase();
     return items.filter(function (it) {
+      if (state.cat === 'security' && state.group !== 'all' && (it.group || '') !== state.group) return false;
       if (state.source !== 'all' && it.feedUrl !== state.source) return false;
       if (!q) return true;
       return (it.title || '').toLowerCase().indexOf(q) >= 0
@@ -75,14 +78,39 @@
     });
   }
 
+  // 安全分类的子标签页：切换分组、显示各分组条目数
+  function renderSubcats(data) {
+    const nav = els.subNav;
+    if (!nav) return;
+    const show = state.cat === 'security';
+    nav.hidden = !show;
+    if (!show) return;
+    const groups = (data && data.groups) || {};
+    nav.querySelectorAll('.subcat').forEach(function (b) {
+      const g = b.getAttribute('data-group') || 'all';
+      const count = g === 'all' ? ((data && data.total) || 0) : (groups[g] || 0);
+      const span = b.querySelector('.n');
+      if (span) span.textContent = count ? String(count) : '';
+      b.classList.toggle('active', g === state.group);
+    });
+  }
+
+  function countText(shown) {
+    const d = state.data || {};
+    const labels = { vuln: '漏洞 · CVE', news: '资讯分析', malware: '恶意软件' };
+    if (state.cat === 'security' && state.group !== 'all' && labels[state.group]) {
+      return labels[state.group] + ' · 共 ' + ((d.groups && d.groups[state.group]) || 0) + ' 条，显示 ' + shown + ' 条';
+    }
+    return '共 ' + (d.total || 0) + ' 条，显示 ' + shown + ' 条';
+  }
+
   function render() {
     if (!state.data) { skeleton(); return; }
     const list = filteredItems();
-    els.count.textContent = state.data.total
-      ? '共 ' + state.data.total + ' 条，显示 ' + list.length + ' 条'
-      : (state.data.error ? '' : '暂无条目');
+    els.count.textContent = state.data.total ? countText(list.length) : (state.data.error ? '' : '暂无条目');
     if (!list.length) {
-      showEmpty(state.search || state.source !== 'all' ? '没有匹配的内容' : '该分类暂无内容，可能所有源暂时不可用');
+      const narrowed = state.search || state.source !== 'all' || (state.cat === 'security' && state.group !== 'all');
+      showEmpty(narrowed ? '没有匹配的内容' : '该分类暂无内容，可能所有源暂时不可用');
       return;
     }
     const html = list.map(function (it) {
@@ -151,6 +179,7 @@
       if (!data || !data.ok) throw new Error((data && data.error) || 'bad response');
       state.data = data;
       updateSources(data);
+      renderSubcats(data);
       render();
       els.list.classList.remove('refreshed');
       void els.list.offsetWidth; // 重启动画
@@ -165,16 +194,31 @@
   }
 
   function setCatFromHash() {
-    const h = location.hash.replace('#', '');
-    loadCat(h === 'security' ? 'security' : 'ai');
+    const parts = location.hash.replace('#', '').split('/');
+    const g = parts[1] || 'all';
+    state.group = ['all', 'vuln', 'news', 'malware'].indexOf(g) >= 0 ? g : 'all';
+    loadCat(parts[0] === 'security' ? 'security' : 'ai');
   }
 
   els.nav.addEventListener('click', function (e) {
     const btn = e.target.closest('.cat');
     if (!btn) return;
-    history.replaceState(null, '', '#' + btn.getAttribute('data-cat'));
-    loadCat(btn.getAttribute('data-cat'));
+    const cat = btn.getAttribute('data-cat');
+    const suffix = cat === 'security' && state.group !== 'all' ? '/' + state.group : '';
+    history.replaceState(null, '', '#' + cat + suffix);
+    loadCat(cat);
   });
+  if (els.subNav) {
+    els.subNav.addEventListener('click', function (e) {
+      const btn = e.target.closest('.subcat');
+      if (!btn) return;
+      state.group = btn.getAttribute('data-group') || 'all';
+      history.replaceState(null, '', state.group === 'all' ? '#security' : '#security/' + state.group);
+      renderSubcats(state.data);
+      els.list.classList.remove('refreshed');
+      render();
+    });
+  }
   els.search.addEventListener('input', function () { els.list.classList.remove('refreshed'); render(); });
   els.source.addEventListener('change', function () { state.source = els.source.value; els.list.classList.remove('refreshed'); render(); });
   els.refresh.addEventListener('click', function () { loadCat(state.cat); });
