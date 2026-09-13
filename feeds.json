@@ -114,18 +114,6 @@
       "url": "https://www.52pojie.cn/forum.php?mod=rss&fid=32",
       "home": "https://www.52pojie.cn/forum-32-1.html",
       "group": "malware"
-    },
-    {
-      "name": "嘶吼 RoarTalk",
-      "url": "https://www.4hou.com/feed",
-      "home": "https://www.4hou.com/",
-      "group": "news"
-    },
-    {
-      "name": "天融信阿尔法实验室",
-      "url": "https://blog.topsec.com.cn/feed",
-      "home": "https://blog.topsec.com.cn/",
-      "group": "news"
     }
   ]
 }

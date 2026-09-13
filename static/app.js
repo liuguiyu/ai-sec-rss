@@ -6,6 +6,7 @@
     search: '',
     source: 'all',
     group: 'all',      // 安全分类的子标签页：all | vuln | news | malware
+    pending: null,     // 后台刷新拿到、但还没展示的新数据
     loading: false
   };
   const els = {
@@ -18,9 +19,11 @@
     count: document.getElementById('itemCount'),
     refresh: document.getElementById('refreshBtn'),
     subNav: document.getElementById('subNav'),
+    updateBar: document.getElementById('updateBar'),
     subAi: document.getElementById('sub-ai'),
     subSec: document.getElementById('sub-security')
   };
+  const SEV_LABEL = { CRITICAL: '严重', HIGH: '高危', MEDIUM: '中危', LOW: '低危' };
   const META = {
     ai: { name: 'AI · 人工智能', color: '#7c8cf8' },
     security: { name: 'SECURITY · 网络安全', color: '#ff8f6b' }
@@ -120,8 +123,17 @@
       const src = esc(it.source || '未知源');
       const when = timeAgo(it.pubDate);
       const link = esc(it.link || '#');
+      const badges = [];
+      if (it.severity) {
+        const label = SEV_LABEL[it.severity] || it.severity;
+        badges.push('<span class="sev ' + esc(String(it.severity).toLowerCase()) + '">' + esc(label) + (it.cvss ? ' ' + esc(it.cvss) : '') + '</span>');
+      } else if (it.cve) {
+        badges.push('<span class="sev cve">' + esc(it.cve) + '</span>');
+      }
+      if (it.kev) badges.push('<span class="sev kev">在野利用</span>');
       return '<a class="card" data-cat="' + esc(state.cat) + '" href="' + link + '" target="_blank" rel="noopener noreferrer">'
         + '<div class="card-head"><span class="source">' + src + '</span>'
+        + (badges.length ? '<span class="badges">' + badges.join('') + '</span>' : '')
         + (when ? '<span class="time">' + when + '</span>' : '') + '</div>'
         + '<h3>' + t + fresh + '</h3>'
         + (s ? '<p>' + s + '</p>' : '')
@@ -164,32 +176,77 @@
     }
   }
 
-  async function loadCat(cat) {
-    if (state.loading) return;
+  function itemKey(it) {
+    return it.link || it.guid || it.title || '';
+  }
+
+  function countNewItems(prev, next) {
+    const seen = new Set(((prev && prev.items) || []).map(itemKey));
+    return ((next && next.items) || []).filter(function (it) { return !seen.has(itemKey(it)); }).length;
+  }
+
+  function showUpdateBar(n) {
+    if (!els.updateBar) return;
+    els.updateBar.innerHTML = '<button type="button" class="newbar">↑ 有 ' + n + ' 条新内容 · 点击查看</button>';
+    els.updateBar.hidden = false;
+  }
+
+  function hideUpdateBar() {
+    if (!els.updateBar) return;
+    els.updateBar.hidden = true;
+    els.updateBar.innerHTML = '';
+  }
+
+  // 真正把数据画到页面上：只在首次进入 / 切换分类 / 用户主动刷新时调用
+  function applyData(data) {
+    state.data = data;
+    state.pending = null;
+    hideUpdateBar();
+    updateSources(data);
+    renderSubcats(data);
+    render();
+    els.list.classList.remove('refreshed');
+    void els.list.offsetWidth; // 重启动画
+    els.list.classList.add('refreshed');
+  }
+
+  let reqSeq = 0;
+
+  async function loadCat(cat, opts) {
+    const o = opts || {};
+    const seq = ++reqSeq;
+    const switched = state.cat !== cat || !state.data;
     state.loading = true;
     state.cat = cat;
-    document.querySelectorAll('.cat').forEach(function (b) {
-      b.classList.toggle('active', b.getAttribute('data-cat') === cat);
-    });
-    skeleton();
+    if (!o.silent) {
+      document.querySelectorAll('.cat').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-cat') === cat);
+      });
+      if (switched && !o.keepList) skeleton();
+    }
     try {
       const res = await fetch('/api/feeds?cat=' + encodeURIComponent(cat) + '&t=' + Date.now(), { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       if (!data || !data.ok) throw new Error((data && data.error) || 'bad response');
-      state.data = data;
-      updateSources(data);
-      renderSubcats(data);
-      render();
-      els.list.classList.remove('refreshed');
-      void els.list.offsetWidth; // 重启动画
-      els.list.classList.add('refreshed');
+      if (seq !== reqSeq) return;
+      if (o.silent) {
+        // 后台刷新：绝不动正在阅读的页面，只在新内容出现时挂个提示条
+        const n = countNewItems(state.data, data);
+        if (n > 0) { state.pending = data; showUpdateBar(n); }
+        else { els.updated.textContent = data.updatedAt ? '更新于 ' + timeAgo(data.updatedAt) : ''; }
+        return;
+      }
+      applyData(data);
     } catch (err) {
-      state.data = { items: [], total: 0, error: (err && err.message) || String(err) };
-      showError((err && err.message) || String(err));
-      els.updated.textContent = '';
+      if (seq !== reqSeq || o.silent) return;
+      if (!o.keepList || !state.data) {
+        state.data = { items: [], total: 0, error: (err && err.message) || String(err) };
+        showError((err && err.message) || String(err));
+        els.updated.textContent = '';
+      }
     } finally {
-      state.loading = false;
+      if (seq === reqSeq) state.loading = false;
     }
   }
 
@@ -221,7 +278,24 @@
   }
   els.search.addEventListener('input', function () { els.list.classList.remove('refreshed'); render(); });
   els.source.addEventListener('change', function () { state.source = els.source.value; els.list.classList.remove('refreshed'); render(); });
-  els.refresh.addEventListener('click', function () { loadCat(state.cat); });
+  els.refresh.addEventListener('click', function () {
+    if (state.loading) return;
+    const btn = els.refresh;
+    const label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '刷新中…';
+    loadCat(state.cat, { keepList: true }).finally(function () {
+      btn.disabled = false;
+      btn.textContent = label;
+    });
+  });
+  if (els.updateBar) {
+    els.updateBar.addEventListener('click', function () {
+      if (!state.pending) return;
+      applyData(state.pending);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   window.addEventListener('hashchange', setCatFromHash);
   window.addEventListener('error', function (e) {
@@ -229,7 +303,8 @@
   });
 
   setCatFromHash();
+  // 5 分钟后台静默刷新：有新内容只提示，不打断阅读
   setInterval(function () {
-    if (!document.hidden) loadCat(state.cat);
-  }, 10 * 60 * 1000);
+    if (!document.hidden) loadCat(state.cat, { silent: true });
+  }, 5 * 60 * 1000);
 })();
