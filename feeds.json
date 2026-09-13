@@ -12,7 +12,6 @@
     { "name": "极客公园", "url": "https://www.geekpark.net/rss", "home": "https://www.geekpark.net/", "filter": "ai" }
   ],
   "security": [
-    { "name": "FreeBuf", "url": "https://www.freebuf.com/feed", "home": "https://www.freebuf.com/" },
     { "name": "安全客", "url": "https://api.anquanke.com/data/v1/rss", "home": "https://www.anquanke.com/" },
     { "name": "先知社区", "url": "https://xz.aliyun.com/feed", "home": "https://xz.aliyun.com/" },
     { "name": "嘶吼 RoarTalk", "url": "https://www.4hou.com/feed", "home": "https://www.4hou.com/" },
