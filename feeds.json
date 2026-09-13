@@ -12,12 +12,16 @@
     { "name": "极客公园", "url": "https://www.geekpark.net/rss", "home": "https://www.geekpark.net/", "filter": "ai" }
   ],
   "security": [
+    { "name": "CISA 在野利用漏洞", "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml", "home": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog" },
+    { "name": "Exploit-DB 漏洞利用", "url": "https://www.exploit-db.com/rss.xml", "home": "https://www.exploit-db.com/" },
+    { "name": "微软安全公告", "url": "https://api.msrc.microsoft.com/update-guide/rss", "home": "https://msrc.microsoft.com/update-guide", "maxItems": 8 },
+    { "name": "Ubuntu 安全公告", "url": "https://ubuntu.com/security/notices/rss.xml", "home": "https://ubuntu.com/security/notices" },
+    { "name": "Debian 安全公告", "url": "https://www.debian.org/security/dsa.rdf", "home": "https://www.debian.org/security/" },
+    { "name": "Tenable 漏洞研究", "url": "https://www.tenable.com/blog/feed", "home": "https://www.tenable.com/blog" },
     { "name": "安全客", "url": "https://api.anquanke.com/data/v1/rss", "home": "https://www.anquanke.com/" },
     { "name": "先知社区", "url": "https://xz.aliyun.com/feed", "home": "https://xz.aliyun.com/" },
+    { "name": "吾爱破解 病毒分析", "url": "https://www.52pojie.cn/forum.php?mod=rss&fid=32", "home": "https://www.52pojie.cn/forum-32-1.html" },
     { "name": "嘶吼 RoarTalk", "url": "https://www.4hou.com/feed", "home": "https://www.4hou.com/" },
-    { "name": "安全脉搏", "url": "https://www.secpulse.com/feed", "home": "https://www.secpulse.com/" },
-    { "name": "火绒安全", "url": "https://www.huorong.cn/rss.xml", "home": "https://www.huorong.cn/" },
-    { "name": "天融信阿尔法实验室", "url": "https://blog.topsec.com.cn/feed", "home": "https://blog.topsec.com.cn/" },
-    { "name": "吾爱破解 病毒分析", "url": "https://www.52pojie.cn/forum.php?mod=rss&fid=32", "home": "https://www.52pojie.cn/forum-32-1.html" }
+    { "name": "天融信阿尔法实验室", "url": "https://blog.topsec.com.cn/feed", "home": "https://blog.topsec.com.cn/" }
   ]
 }
